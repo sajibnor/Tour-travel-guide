@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ghuraghuri/screen/gridviewui.dart';
 import 'package:ghuraghuri/screen/pageviwer.dart';
 import 'package:ghuraghuri/screen/search.dart';
+import 'package:ghuraghuri/screen/ui2.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
@@ -94,16 +95,125 @@ class _HomeState extends State<Home> {
             title: Text("Populer palce"),
             trailing: Icon(Icons.arrow_forward),
           ),
-         GriedviewPlace(),
+          GriedviewPlace(),
           ListTile(
             title: Text("Recent palce"),
             trailing: Icon(Icons.arrow_forward),
           ),
-          GriedviewPlace()
+          GriedviewPlace(),
+          SizedBox(
+            height: 20,
+          ),
+          // ListOfCard(),
+          Container(
+            height: 800,
+            child: ListView.builder(
+              itemCount: 6,
+              itemBuilder: (context, index) => ListOfCard(),
+            ),
+          )
+
+          //  Container(height: ,)
+
           // Container(height: 200,
           // child:GridView.builder(gridDelegate: SliverGridDelegate(), itemBuilder:(context, index) => ,)
 
           // )
+        ],
+      ),
+    );
+  }
+}
+
+class ListOfCard extends StatelessWidget {
+  const ListOfCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 4,
+                        offset: Offset(2, 2),
+                        color: Colors.black12)
+                  ]),
+              height: 130,
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                            alignment: Alignment.bottomLeft,
+                            child: Text("Cox Bazar ,Chittagong")),
+                        Row(
+                          children: [
+                            Icon(Icons.location_on),
+                            Text("Cox Bazar ,Chittagong"),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          thickness: 2,
+                          height: 2,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.heart,
+                              color: Colors.red,
+                            ),
+                            Text("20"),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Icon(
+                              Icons.comment,
+                              color: Colors.red,
+                            ),
+                            Text("5"),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 120,
+            width: 120,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkDnEM41wBbhuV1wpA9v4t0x-3jadRxy-uiw&usqp=CAU",
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
         ],
       ),
     );
