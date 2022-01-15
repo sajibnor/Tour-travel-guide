@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 class PageviewerUi extends StatelessWidget {
   const PageviewerUi({
     Key? key,
@@ -8,9 +9,9 @@ class PageviewerUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      overflow: Overflow.visible,
-      // clipBehavior: Clip.antiAlias,
-      alignment: Alignment.bottomCenter,
+      // overflow: Overflow.visible,
+      clipBehavior: Clip.none,
+      // alignment: Alignment.bottomCenter,
       children: [
         Container(
           color: Colors.blue,
@@ -18,11 +19,10 @@ class PageviewerUi extends StatelessWidget {
           width: double.infinity,
         ),
         Positioned(
-          bottom: -30,
+          // bottom: ,
+          top: 150,
+          left: 100,
           child: Topcard(),
-        ),
-        SizedBox(
-          height: 40,
         ),
       ],
     );
@@ -41,8 +41,7 @@ class Topcard extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: [
-            BoxShadow(
-                blurRadius: 4, offset: Offset(2, 2), color: Colors.blue)
+            BoxShadow(blurRadius: 4, offset: Offset(2, 2), color: Colors.blue)
           ]),
       height: 120,
       width: 300,

@@ -67,10 +67,20 @@ class _HomeState extends State<Home> {
           ),
           SearchUi(),
           Container(
-            height: 250,
-            width: double.infinity,
-            child: PageView(controller: pagecontroller, children: pages),
+            height: 280,
+            child: PageView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: l.length,
+              itemBuilder: (context, index) => Container(
+                height: 280,
+                width: double.infinity,
+                child: PageView(controller: pagecontroller, children: pages),
+              ),
+            ),
           ),
+          // SizedBox(
+          //   height: 40,
+          // ),
 
           Center(
             child: SmoothPageIndicator(
@@ -103,6 +113,10 @@ class _HomeState extends State<Home> {
           GriedviewPlace(),
           SizedBox(
             height: 20,
+          ),
+          Container(
+            decoration:
+                BoxDecoration(image: DecorationImage(image: AssetImage(""))),
           ),
           // ListOfCard(),
           Container(
