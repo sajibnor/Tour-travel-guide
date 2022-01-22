@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghuraghuri/controller/controller.dart';
+import 'package:ghuraghuri/screen/apiui.dart';
+import 'package:ghuraghuri/screen/blogs.dart';
 import 'package:ghuraghuri/screen/home.dart';
 import 'package:ghuraghuri/screen/stack.dart';
 import 'package:ghuraghuri/screen/t.dart';
@@ -7,6 +9,7 @@ import 'package:ghuraghuri/screen/travelguid.dart';
 import 'package:ghuraghuri/screen/ui2.dart';
 import 'package:provider/provider.dart';
 
+//  01660185714
 main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Travelguide(),
+        home: Home(),
       ),
     );
   }

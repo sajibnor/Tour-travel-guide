@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
