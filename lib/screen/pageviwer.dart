@@ -1,3 +1,6 @@
+// import 'dart:ffi';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,20 +11,33 @@ class PageviewerUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightsize = MediaQuery.of(context).size.height;
+    double widthsize = MediaQuery.of(context).size.width;
+
     return Stack(
       // overflow: Overflow.visible,
       clipBehavior: Clip.none,
       // alignment: Alignment.bottomCenter,
       children: [
-        Container(
-          color: Colors.blue,
-          height: 250,
-          width: double.infinity,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            // color: Colors.blue,
+            height: heightsize * .28,
+            width: double.infinity,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(widthsize * .06),
+                clipBehavior: Clip.antiAlias,
+                child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5p9chSGeLqyg3rZawPqbAbPcg6l-gL8ErUA&usqp=CAU",
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
         Positioned(
           // bottom: ,
-          top: 150,
-          left: 100,
+          top: heightsize * .18,
+          left: widthsize * .18,
           child: Topcard(),
         ),
       ],

@@ -1,5 +1,3 @@
-
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,85 +53,88 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double heightsize = MediaQuery.of(context).size.height;
+    double widthsize = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text("Travel Hour"),
-            subtitle: Text("Bangladesh Travel"),
-            trailing: CircleAvatar(
-              child: Text("A"),
-            ),
-          ),
-          SearchUi(),
-          Container(
-            height: 280,
-            child: PageView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: l.length,
-              itemBuilder: (context, index) => Container(
-                height: 280,
-                width: double.infinity,
-                child: PageView(controller: pagecontroller, children: pages),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("Travel Hour"),
+              subtitle: Text("Bangladesh Travel"),
+              trailing: CircleAvatar(
+                child: Text("A"),
               ),
             ),
-          ),
-          // SizedBox(
-          //   height: 40,
-          // ),
-
-          Center(
-            child: SmoothPageIndicator(
-              controller: pagecontroller,
-              count: 6,
-              axisDirection: Axis.horizontal,
-              effect: JumpingDotEffect(
-                  spacing: 8.0,
-                  radius: 15.0,
-                  dotWidth: 24.0,
-                  dotHeight: 16.0,
-                  paintStyle: PaintingStyle.fill,
-                  strokeWidth: 1.5,
-                  dotColor: Colors.grey,
-                  verticalOffset: 12,
-                  jumpScale: 3,
-                  activeDotColor: Colors.indigo),
+            SearchUi(),
+            Container(
+              height: heightsize * .33,
+              child: PageView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: l.length,
+                itemBuilder: (context, index) => Container(
+                  height: heightsize * .33,
+                  width: double.infinity,
+                  child: PageView(controller: pagecontroller, children: pages),
+                ),
+              ),
             ),
-          ),
+            // SizedBox(
+            //   height: 40,
+            // ),
 
-          ListTile(
-            title: Text("Populer palce"),
-            trailing: Icon(Icons.arrow_forward),
-          ),
-          GriedviewPlace(),
-          ListTile(
-            title: Text("Recent palce"),
-            trailing: Icon(Icons.arrow_forward),
-          ),
-          GriedviewPlace(),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            decoration:
-                BoxDecoration(image: DecorationImage(image: AssetImage(""))),
-          ),
-          // ListOfCard(),
-          Container(
-            height: 800,
-            child: ListView.builder(
-              itemCount: 6,
-              itemBuilder: (context, index) => ListOfCard(),
+            Center(
+              child: SmoothPageIndicator(
+                controller: pagecontroller,
+                count: 6,
+                axisDirection: Axis.horizontal,
+                effect: JumpingDotEffect(
+                    spacing: 8.0,
+                    radius: 15.0,
+                    dotWidth: 24.0,
+                    dotHeight: 16.0,
+                    paintStyle: PaintingStyle.fill,
+                    strokeWidth: 1.5,
+                    dotColor: Colors.grey,
+                    verticalOffset: 12,
+                    jumpScale: 3,
+                    activeDotColor: Colors.indigo),
+              ),
             ),
-          )
 
-          //  Container(height: ,)
+            ListTile(
+              title: Text("Populer palce"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+            GriedviewPlace(),
+            ListTile(
+              title: Text("Recent palce"),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+            GriedviewPlace(),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              decoration:
+                  BoxDecoration(image: DecorationImage(image: AssetImage(""))),
+            ),
+            // ListOfCard(),
+            Container(
+              child: Column(
+                children: List.generate(20, (index) => ListOfCard()),
+              ),
+            )
 
-          // Container(height: 200,
-          // child:GridView.builder(gridDelegate: SliverGridDelegate(), itemBuilder:(context, index) => ,)
+            //  Container(height: ,)
 
-          // )
-        ],
+            // Container(height: 200,
+            // child:GridView.builder(gridDelegate: SliverGridDelegate(), itemBuilder:(context, index) => ,)
+
+            // )
+          ],
+        ),
       ),
     );
   }

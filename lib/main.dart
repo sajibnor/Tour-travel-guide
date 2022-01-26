@@ -3,6 +3,7 @@ import 'package:ghuraghuri/controller/controller.dart';
 import 'package:ghuraghuri/screen/apiui.dart';
 import 'package:ghuraghuri/screen/blogs.dart';
 import 'package:ghuraghuri/screen/home.dart';
+import 'package:ghuraghuri/screen/introduction.dart';
 import 'package:ghuraghuri/screen/stack.dart';
 import 'package:ghuraghuri/screen/t.dart';
 import 'package:ghuraghuri/screen/travelguid.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        home: IntroductionPage(),
       ),
     );
   }

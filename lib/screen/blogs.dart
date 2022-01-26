@@ -57,7 +57,7 @@ class BlogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 200,
+              height: 160,
               width: double.maxFinite,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20)),
@@ -110,5 +110,105 @@ class BlogItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ItemList extends StatelessWidget {
+  // final Blog d;
+  // const _ItemList({Key key, @required this.d}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.grey, blurRadius: 10, offset: Offset(0, 3))
+              ]),
+          child: Wrap(
+            children: [
+              Hero(
+                tag: 'blog d.timestamp',
+                child: Container(
+                  height: 160,
+                  width: MediaQuery.of(context).size.width,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.network(
+                        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/e2/f8/43/longest-sea-beach-in.jpg?w=700&h=-1&s=1",
+                        fit: BoxFit.cover,
+                      )
+                      // CustomCacheImage(imageUrl: d.thumbnailImagelUrl),
+                      ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "d.title",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                        " HtmlUnescape().convert(parse(d.description).documentElement.text)",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey[700])),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          CupertinoIcons.time,
+                          size: 16,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          "d.date",
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.favorite,
+                          size: 16,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          "d.loves".toString(),
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {}
+        //  nextScreen(context, BlogDetails(blogData: d, tag: 'blog${d.timestamp}'))
+        );
   }
 }
