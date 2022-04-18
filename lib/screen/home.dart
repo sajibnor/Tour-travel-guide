@@ -1,11 +1,30 @@
+// import 'dart:js';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ghuraghuri/controller/getdatacontroler.dart';
+import 'package:ghuraghuri/screen/adminPanel/updaload_place.dart';
+import 'package:ghuraghuri/screen/blogs.dart';
 import 'package:ghuraghuri/screen/gridviewui.dart';
+import 'package:ghuraghuri/screen/hero.dart';
+import 'package:ghuraghuri/screen/imagepicker.dart';
+import 'package:ghuraghuri/screen/introduction.dart';
+import 'package:ghuraghuri/screen/loadingimage.dart';
+import 'package:ghuraghuri/screen/moreplace.dart';
 import 'package:ghuraghuri/screen/pageviwer.dart';
+import 'package:ghuraghuri/screen/place_details.dart';
 import 'package:ghuraghuri/screen/search.dart';
+import 'package:ghuraghuri/screen/suggetionblog.dart';
+import 'package:ghuraghuri/screen/t.dart';
+import 'package:ghuraghuri/screen/travelguid.dart';
 import 'package:ghuraghuri/screen/ui2.dart';
+import 'package:ghuraghuri/untils/routing.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:timelines/timelines.dart';
+
+// import 'adminPanel/updaload_place.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,40 +41,16 @@ class _HomeState extends State<Home> {
     PageviewerUi(),
   ];
 
-  var l = [
-    Container(
-      color: Colors.blue,
-      height: 400,
-      width: 400,
-    ),
-    Container(
-      color: Colors.amber,
-      height: 400,
-      width: 400,
-    ),
-    Container(
-      color: Colors.green,
-      height: 400,
-      width: 400,
-    ),
-    Container(
-      color: Colors.amber,
-      height: 400,
-      width: 400,
-    ),
-    Container(
-      color: Colors.green,
-      height: 400,
-      width: 400,
-    )
-  ];
   var pagecontroller = PageController();
+  int listIndex = 2;
 
   @override
   Widget build(BuildContext context) {
+    final controlerGetdata = Provider.of<GetdataCntr>(context);
     double heightsize = MediaQuery.of(context).size.height;
     double widthsize = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: NewDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
@@ -66,40 +61,76 @@ class _HomeState extends State<Home> {
               trailing: CircleAvatar(
                 child: Text("A"),
               ),
+              onTap: () {
+                nextPage(context, Uploadplace());
+              },
             ),
+            // Row(
+            //   children: [
+            //     TextButton(
+            //         onPressed: () {
+            //           nextPage(context, Uploadplace());
+            //         },
+            //         child: Text("imagepicker")),
+            //     TextButton(
+            //         onPressed: () {
+            //           nextPage(context, AddImage());
+            //         },
+            //         child: Text("imagepicker")),
+            //   ],
+            // ),
             SearchUi(),
             Container(
               height: heightsize * .33,
               child: PageView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: l.length,
-                itemBuilder: (context, index) => Container(
-                  height: heightsize * .33,
-                  width: double.infinity,
-                  child: PageView(controller: pagecontroller, children: pages),
-                ),
-              ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  onPageChanged: (index) {
+                    setState(() {
+                      listIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) => pages[index]
+                  //  Container(
+
+                  //   height: heightsize * .33,
+                  //   width: double.infinity,
+                  //   child: PageView(controller: pagecontroller, children: pages),
+                  // ),
+                  ),
             ),
             // SizedBox(
             //   height: 40,
             // ),
 
             Center(
-              child: SmoothPageIndicator(
-                controller: pagecontroller,
-                count: 6,
-                axisDirection: Axis.horizontal,
-                effect: JumpingDotEffect(
-                    spacing: 8.0,
-                    radius: 15.0,
-                    dotWidth: 24.0,
-                    dotHeight: 16.0,
-                    paintStyle: PaintingStyle.fill,
-                    strokeWidth: 1.5,
-                    dotColor: Colors.grey,
-                    verticalOffset: 12,
-                    jumpScale: 3,
-                    activeDotColor: Colors.indigo),
+              child: DotsIndicator(
+                dotsCount: 5,
+                position: listIndex.toDouble(),
+                decorator: DotsDecorator(
+                  color: Colors.black26,
+                  activeColor: Colors.black,
+                  spacing: EdgeInsets.only(left: 6),
+                  size: const Size.square(5.0),
+                  activeSize: const Size(20.0, 5.0),
+                  activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+
+                  // controller: pagecontroller,
+                  // count: 6,
+                  // axisDirection: Axis.horizontal,
+                  // effect: JumpingDotEffect(
+                  //     spacing: 8.0,
+                  //     radius: 15.0,
+                  //     dotWidth: 24.0,
+                  //     dotHeight: 16.0,
+                  //     paintStyle: PaintingStyle.fill,
+                  //     strokeWidth: 1.5,
+                  //     dotColor: Colors.grey,
+                  //     verticalOffset: 12,
+                  //     jumpScale: 3,
+                  //     activeDotColor: Colors.indigo),
+                ),
               ),
             ),
 
@@ -109,6 +140,9 @@ class _HomeState extends State<Home> {
             ),
             GriedviewPlace(),
             ListTile(
+              onTap: () {
+                Navigator.of(context).push(pageroute(IntroductionPage()));
+              },
               title: Text("Recent palce"),
               trailing: Icon(Icons.arrow_forward),
             ),
@@ -119,20 +153,49 @@ class _HomeState extends State<Home> {
             Container(
               decoration:
                   BoxDecoration(image: DecorationImage(image: AssetImage(""))),
+              child: Container(
+                margin: EdgeInsets.only(
+                  left: 15,
+                  top: 10,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'Recently added',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey[800]),
+                    ),
+                    Spacer(),
+                    IconButton(
+                      icon: Icon(Icons.arrow_forward),
+                      onPressed: () => null,
+                    )
+                  ],
+                ),
+              ),
             ),
             // ListOfCard(),
             Container(
-              child: Column(
-                children: List.generate(20, (index) => ListOfCard()),
+                child: Column(
+              children: List.generate(
+                8,
+                (index) => ListOfCard(onpress: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Blog()));
+                }),
               ),
             )
 
-            //  Container(height: ,)
+                //  Container(height: ,)
 
-            // Container(height: 200,
-            // child:GridView.builder(gridDelegate: SliverGridDelegate(), itemBuilder:(context, index) => ,)
+                // Container(height: 200,
+                // child:GridView.builder(gridDelegate: SliverGridDelegate(), itemBuilder:(context, index) => ,)
 
-            // )
+                // )
+                ),
+            RecommendedPlaces()
           ],
         ),
       ),
@@ -141,9 +204,11 @@ class _HomeState extends State<Home> {
 }
 
 class ListOfCard extends StatelessWidget {
-  const ListOfCard({
-    Key? key,
-  }) : super(key: key);
+  var onpress;
+  var index;
+  // ListOfCard({this.index, required this.onpress});
+
+  ListOfCard({Key? key, this.index, required this.onpress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -218,14 +283,17 @@ class ListOfCard extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: 120,
-            width: 120,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkDnEM41wBbhuV1wpA9v4t0x-3jadRxy-uiw&usqp=CAU",
-                fit: BoxFit.cover,
+          InkWell(
+            onTap: onpress,
+            child: Container(
+              height: 120,
+              width: 120,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkDnEM41wBbhuV1wpA9v4t0x-3jadRxy-uiw&usqp=CAU",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           )
@@ -234,7 +302,6 @@ class ListOfCard extends StatelessWidget {
     );
   }
 }
-
 
 // Widget ingleProducts() {
 //   return Container(
@@ -347,3 +414,19 @@ class ListOfCard extends StatelessWidget {
 //     ),
 //   );
 // }
+
+Route pageroute(Widget widget) {
+  print("object");
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => widget,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(-.1, .1);
+        const end = Offset.zero;
+        final tween = Tween(begin: begin, end: end);
+        final offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      });
+}

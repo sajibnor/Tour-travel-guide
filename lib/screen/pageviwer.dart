@@ -1,22 +1,26 @@
 // import 'dart:ffi';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PageviewerUi extends StatelessWidget {
-  const PageviewerUi({
-    Key? key,
-  }) : super(key: key);
+//   PageviewerUi({
+//     Key? key,
+// required data  }) : super(key: key);
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("db");
 
   @override
   Widget build(BuildContext context) {
     double heightsize = MediaQuery.of(context).size.height;
     double widthsize = MediaQuery.of(context).size.width;
+    print(heightsize * .28.toDouble());
 
     return Stack(
       // overflow: Overflow.visible,
-      clipBehavior: Clip.none,
+      // clipBehavior: Clip.none,
       // alignment: Alignment.bottomCenter,
       children: [
         Padding(
@@ -24,7 +28,7 @@ class PageviewerUi extends StatelessWidget {
           child: Container(
             // color: Colors.blue,
             height: heightsize * .28,
-            width: double.infinity,
+            width: widthsize,
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(widthsize * .06),
                 clipBehavior: Clip.antiAlias,
@@ -35,9 +39,16 @@ class PageviewerUi extends StatelessWidget {
           ),
         ),
         Positioned(
-          // bottom: ,
-          top: heightsize * .18,
-          left: widthsize * .18,
+          height: 120,
+          width: widthsize * 0.70,
+          left: widthsize * 0.11,
+          bottom: 10,
+          // height: 220,
+          // width: widthsize * 0.70,
+          // bottom: heightsize * .004,
+          // // top: heightsize * .16,
+          // left: widthsize / 10,
+          // right: widthsize / 10,
           child: Topcard(),
         ),
       ],
@@ -59,8 +70,8 @@ class Topcard extends StatelessWidget {
           boxShadow: [
             BoxShadow(blurRadius: 4, offset: Offset(2, 2), color: Colors.blue)
           ]),
-      height: 120,
-      width: 300,
+      // height: 120,
+      // width: 300,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(

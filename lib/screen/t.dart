@@ -9,45 +9,7 @@ class T extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Uione()));
-                },
-                tileColor: Colors.cyan,
-                title: Text("UI one"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => UiTwo()));
-                },
-                tileColor: Colors.cyan,
-                title: Text("UI Two"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Settings()));
-                },
-                tileColor: Colors.cyan,
-                title: Text("UI settings"),
-              ),
-            )
-          ],
-        ),
-      ),
+      drawer: NewDrawer(),
       appBar: AppBar(),
       body: Center(
         child: CircleAvatar(
@@ -80,6 +42,55 @@ class T extends StatelessWidget {
         //     ],
         //   ),
         // ),
+      ),
+    );
+  }
+}
+
+class NewDrawer extends StatelessWidget {
+  const NewDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Uione()));
+              },
+              tileColor: Colors.cyan,
+              title: Text("UI one"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => UiTwo()));
+              },
+              tileColor: Colors.cyan,
+              title: Text("UI Two"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Settings()));
+              },
+              tileColor: Colors.cyan,
+              title: Text("UI settings"),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -32,21 +32,23 @@ class Cardui extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        
-        height: 200,
-        width: double.infinity,
+        // height: 200,
+        // width: double.infinity,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                  color: Colors.amber, borderRadius: BorderRadius.circular(15)),
-              width: double.infinity,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              // height: 200,
+              // decoration: BoxDecoration(
+              //     color: Colors.amber, borderRadius: BorderRadius.circular(15)),
+              // width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Image.network(
                   img,
+                  height: 200,
+                  width: double.maxFinite,
                   fit: BoxFit.fill,
                 ),
               ),

@@ -31,13 +31,7 @@ class _ApiuiState extends State<Apiui> {
     print(data);
     return Scaffold(
         appBar: AppBar(),
-        body: ListView(children: [
-          
-          ...data.
-          
-          map((e) => Text("${e["id"]}"))
-          
-          ]
+        body: ListView(children: [...data.map((e) => Text("${e["id"]}"))]
 
             // List.generate(
             //     data.length,

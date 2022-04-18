@@ -207,7 +207,9 @@ class _ItemList extends StatelessWidget {
             ],
           ),
         ),
-        onTap: () {}
+        onTap: () {
+          print("");
+        }
         //  nextScreen(context, BlogDetails(blogData: d, tag: 'blog${d.timestamp}'))
         );
   }
